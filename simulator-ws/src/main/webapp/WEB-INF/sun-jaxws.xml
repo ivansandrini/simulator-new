@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+    version="2.0">
+    <endpoint name="ginfes"
+        implementation="com.neogrid.simulator.mock.GinfesMock"
+        url-pattern="/ginfes" />
+    <endpoint name="prodam"
+        implementation="com.neogrid.simulator.mock.ProdamMock"
+        url-pattern="/prodam" />
+    <endpoint name="siltecnologiaEntrada"
+        implementation="com.neogrid.simulator.mock.SiltecnologiaEntradaMock"
+        url-pattern="/siltecnologiaEntrada" />
+    <endpoint name="siltecnologiaSaida"
+        implementation="com.neogrid.simulator.mock.SiltecnologiaSaidaMock"
+        url-pattern="/siltecnologiaSaida" />
+    <endpoint name="saatri"
+        implementation="com.neogrid.simulator.mock.SaatriMock"
+        url-pattern="/saatri" />
+</endpoints>

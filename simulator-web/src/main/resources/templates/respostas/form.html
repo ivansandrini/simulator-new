@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:include="header" />
+<head>
+<style type="text/css" media="screen">
+#editor {
+	height: 300px;
+}
+</style>
+</head>
+
+
+<body>
+	<div class="container">
+		<div th:include="nav" />
+
+		<div class="row">
+			<div class="col s12">
+				<form th:action="@{/respostas/gravar}" th:object="${resposta}" method="post">
+
+					<input type="hidden" id="id" th:field="*{id}" />
+
+					<div class="row">
+						<div class="input-field col s6">
+							<label class="active">Nome</label>
+							<input type="text" th:field="*{nome}" />
+							<th:erros path="nome" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s8">
+							<label class="active">Mensagem</label>
+							<div id="editor"></div>
+							<input type="hidden" id="mensagem" th:field="*{mensagem}" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="input-field col s6">
+							<label class="active">Tipo</label>
+							<select th:field="*{tipo.id}" class="browser-default">
+								<option th:each="tipoVar : ${tipos}" th:value="${tipoVar.id}" th:text="${tipoVar.nome}" />
+							</select>
+
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="input-field col s6">
+							<label class="active">Layout</label> 
+							<select th:field="*{layout.id}" class="browser-default">
+								<option th:each="layout : ${layouts}" th:value="${layout.id}" th:text="${layout.nome}"></option>
+							</select>
+						</div>
+					</div>
+
+					<button type="submit" th:style="*{ip == null and id != null}? 'display:none'" class="waves-effect waves-light btn #d32f2f red darken-2">Cadastrar</button>
+					<a href="#" class="waves-effect waves-light btn #d32f2f red darken-2" onclick="window.history.go(-1)">Cancelar</a>
+				</form>
+			</div>
+		</div>
+
+		<!-- div th:include="footer" / -->
+
+		<div th:include="scripts" />
+
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
+
+	<script th:inline="javascript">
+		$(document).ready(function(){
+			var editor = ace.edit("editor");
+			editor.setTheme("ace/theme/monokai");
+			editor.setValue([[${resposta.getTextMessage()}]]);
+			editor.getSession().setMode("ace/mode/xml");
+			
+			$("button").click(function(){
+				$('#mensagem').val(editor.getValue());
+		    });
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<div th:fragment="search(url)">
+	<div class="row">
+		<div class="col s6">
+			<nav>
+				<div class="nav-wrapper #ffffff white"
+					th:with="baseUrl=${#httpServletRequest.requestURI.contains('/search')? 
+						  #httpServletRequest.requestURI : #httpServletRequest.requestURI + '/search' }">
+					<form th:object="${searchForm}" th:action="@{${baseUrl}}" method="post">
+						<div class="input-field">
+							<input th:field="*{search}" type="search" /><label for="search"><i class="material-icons black-text">search</i></label><i
+								class="material-icons black-text">close</i>
+						</div>
+					</form>
+				</div>
+			</nav>
+		</div>
+		<div class="col s6">
+			<a th:href="@{${url} + '/form'}" class="btn-floating btn-large waves-effect waves-light #d32f2f red darken-2 right"> <i
+				class="material-icons">add</i>
+			</a>
+		</div>
+	</div>
+</div>

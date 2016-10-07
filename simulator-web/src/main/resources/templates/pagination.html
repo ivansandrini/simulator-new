@@ -1,0 +1,24 @@
+<div th:fragment="pagination(entity,url)">
+	<ul class="pagination">
+	  <li th:class="${entity.isFirst()}? 'disabled'">
+	  	<a th:if="${not entity.isFirst()}" th:href="@{${url}(page=0,size=${entity.getSize()})}">
+	  		<i class="material-icons">chevron_left</i>
+	  	</a>
+	  	<a th:if="${entity.isFirst()}">
+	  		<i class="material-icons">chevron_left</i>
+	  	</a>
+	  </li>
+	  <li th:each="seq : ${#numbers.sequence( 0, entity.getTotalPages() >= 1 ? entity.getTotalPages() - 1 : entity.getTotalPages())}"
+	  		th:class="${entity.getNumber() == seq ? 'active' : 'waves-effect'}">
+	  	<a th:text="${seq+1}" th:href="@{${url}(page=${seq},size=${entity.getSize()})}"/>
+	  </li>
+	  <li th:class="${entity.isLast()}? 'disabled'">
+	  	<a th:if='${not entity.isLast()}' th:href="@{${url}(page=${entity.getTotalPages()-1},size=${entity.getSize()})}">
+	  		<i class="material-icons">chevron_right</i>
+	  	</a>
+	  	<a th:if="${entity.isLast()}">
+	  		<i class="material-icons">chevron_right</i>
+	  	</a>
+	  </li>
+	</ul>
+</div>

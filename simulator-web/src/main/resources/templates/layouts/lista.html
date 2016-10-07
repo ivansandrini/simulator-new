@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:include="header" />
+
+<body>
+	<div class="container">
+		<div th:include="nav" />
+
+		<div class="row">
+			<div class="col s12">
+				<h4>Lista de Layouts</h4>
+				<p th:text="${sucesso}" />
+				<table class="highlight bordered">
+					<thead>
+						<tr>
+							<th>Nome</th>
+						</tr>
+					</thead>
+
+					<tr th:each="layout : ${layouts}">
+						<td th:text="*{layout.nome}"></td>
+						<td><a th:href="${(#mvc.url('LC#update')).arg(0, layout.id).build()}"><i class="tiny material-icons">mode_edit</i></a></td>
+						<td><a th:href="${(#mvc.url('LC#remove')).arg(0, layout.id).build()}"><i class="tiny material-icons">delete</i></a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- div th:include="footer" / -->
+	</div>
+
+	<div th:include="scripts" />
+</body>
+</html>

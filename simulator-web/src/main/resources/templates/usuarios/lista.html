@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:include="header" />
+
+<body>
+	<div class="container">
+		<div th:include="nav" />
+
+		<div class="row">
+			<div class="col s12">
+				<h4>Lista de Usu&aacute;rios</h4>
+				<p th:text="${sucesso}" />
+				<table class="highlight bordered">
+					<thead>
+						<tr>
+							<th>Usu&aacute;rio</th>
+							<th>IP</th>
+						</tr>
+					</thead>
+
+					<tr th:each="usuario : ${usuarios}">
+						<td th:text="*{usuario.nome}" />
+						<td th:text="*{usuario.ip}" />
+						
+						<td><a th:href="${(#mvc.url('UC#update')).arg(0, usuario.id).build()}"><i class="tiny material-icons">mode_edit</i></a></td>
+						<td><a th:href="${(#mvc.url('UC#remove')).arg(0, usuario.id).build()}"><i class="tiny material-icons">delete</i></a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- div th:include="footer" / -->
+	</div>
+
+	<div th:include="scripts" />
+</body>
+</html>

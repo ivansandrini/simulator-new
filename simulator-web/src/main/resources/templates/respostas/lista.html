@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:include="header" />
+
+<body>
+	<div class="container">
+		<div th:include="nav" />
+
+				
+				<h4>Lista de Respostas</h4>
+				
+				<div th:include="search(url='/respostas')" />
+				
+				<p th:text="${sucesso}" />
+				<table class="highlight bordered">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Layout</th>
+							<th>Tipo</th>
+						</tr>
+					</thead>
+
+					<tr th:each="resposta : ${respostas}">
+						<td th:text="*{resposta.nome}"></td>
+						<td th:text="*{resposta.layout.nome}"></td>
+						<td th:text="*{resposta.tipo.nome}"></td>
+
+						<td><a th:href="${(#mvc.url('RC#update')).arg(0, resposta.id).build()}"><i class="tiny material-icons">mode_edit</i></a></td>
+						<td th:style="${resposta.ip == null}? 'display:none'"><a th:href="${(#mvc.url('RC#remove')).arg(0, resposta.id).build()}"><i class="tiny material-icons">delete</i></a></td>
+					</tr>
+				</table>
+				
+				<div th:include="pagination(entity=${respostas}, url=${#httpServletRequest.requestURI})" />
+			
+		<!-- div th:include="footer" / -->
+	</div>
+
+	<div th:include="scripts" />
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btn-close").click(function(){
+			alert("foi")
+			//$('#mensagem').val(editor.getValue());
+	    });
+	});
+	</script>
+</body>
+</html>

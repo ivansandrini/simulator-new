@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+	<changeSet author="isandrini (generated)" id="1475155932258-1">
+		<createTable tableName="layout">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="nome" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-2">
+		<createTable tableName="parametro_resposta">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="chave" type="VARCHAR(255)" />
+			<column name="parameter_type" type="INT" />
+			<column name="valor" type="VARCHAR(255)" />
+			<column name="resposta_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-3">
+		<createTable tableName="resposta">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="mensagem" type="LONGBLOB" />
+			<column name="nome" type="VARCHAR(255)" />
+			<column name="layout_id" type="INT" />
+			<column name="tipo_id" type="INT" />
+			<column name="ip" type="VARCHAR(60)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-4">
+		<createTable tableName="tipo">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="nome" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-6">
+		<createIndex indexName="FK3widqmwu7w7qhjb1phuw7im68" tableName="resposta">
+			<column name="tipo_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-7">
+		<createIndex indexName="FKgbpj2jea0568epkm67wymovhp" tableName="resposta">
+			<column name="layout_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-8">
+		<createIndex indexName="FKgvjywrrbi5aidvcmv3plu5q6y" tableName="parametro_resposta">
+			<column name="resposta_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-10">
+		<addForeignKeyConstraint baseColumnNames="tipo_id" baseTableName="resposta" constraintName="FK3widqmwu7w7qhjb1phuw7im68"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="tipo" />
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-11">
+		<addForeignKeyConstraint baseColumnNames="layout_id" baseTableName="resposta" constraintName="FKgbpj2jea0568epkm67wymovhp"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="layout" />
+	</changeSet>
+	<changeSet author="isandrini (generated)" id="1475155932258-12">
+		<addForeignKeyConstraint baseColumnNames="resposta_id" baseTableName="parametro_resposta"
+			constraintName="FKgvjywrrbi5aidvcmv3plu5q6y" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="resposta" />
+	</changeSet>
+
+	<changeSet author="isandrini" id="1.0">
+		<loadData encoding="UTF-8" file="db/changelog/csv/types.csv" tableName="tipo" />
+		<loadData encoding="UTF-8" file="db/changelog/csv/layouts.csv" tableName="layout" />
+		<loadData encoding="UTF-8" file="db/changelog/csv/responses.csv" tableName="resposta" />
+	</changeSet>
+	
+</databaseChangeLog>

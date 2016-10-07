@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:include="header" />
+
+<body>
+	<div class="container">
+		<div th:include="nav" />
+
+		<div class="row">
+			<div class="col s12">
+				<form th:action="@{/usuarios/gravar}" method="post" th:object="${usuario}">
+				
+					<input type="hidden" id="id" th:field="*{id}" />
+					
+					<div class="row">
+						<label class="active">Nome</label> 
+						<input th:field="*{nome}" class="validate" />
+						<errors path="nome" />
+					</div>
+
+					<div class="row">
+						<div class="input-field col s6">
+							<label class="active">IP</label>
+							<input th:field="*{ip}" class="validate" />
+							<errors path="ip" />
+						</div>
+					</div>
+
+					<button type="submit" class="waves-effect waves-light btn #d32f2f red darken-2">Cadastrar</button>
+					<a href="#" class="waves-effect waves-light btn #d32f2f red darken-2" onclick="window.history.go(-1)">Cancelar</a>
+				</form>
+			</div>
+		</div>
+
+		<!-- div th:include="footer" / -->
+		<div th:include="scripts" />
+	</div>
+</body>
+</html>
