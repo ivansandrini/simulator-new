@@ -9,8 +9,6 @@
           <class>com.neogrid.simulator.model.ParametroResposta</class>
           <class>com.neogrid.simulator.model.Resposta</class>
           <class>com.neogrid.simulator.model.Tipo</class>
-          <class>com.neogrid.simulator.model.TipoResposta</class>
-          <class>com.neogrid.simulator.model.Usuario</class>
           
           <properties>
                <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
