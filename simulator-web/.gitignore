@@ -68,6 +68,8 @@ bower_components
 .bower-registry
 .bower-tmp
 
+src/main/resources/static/*
+
 #### Node ###
 node_modules/
 vendor/

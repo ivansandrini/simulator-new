@@ -11,10 +11,6 @@
 	<artifactId>simulator-web</artifactId>
 	<packaging>jar</packaging>
 
-	<properties>
-		<neogrid.simulator.version>0.0.1-SNAPSHOT</neogrid.simulator.version>
-	</properties>
-
 	<repositories>
 		<repository>
 			<id>project.local</id>
@@ -61,7 +57,7 @@
 		<dependency>
 			<groupId>com.neogrid.simulator</groupId>
 			<artifactId>simulator-db</artifactId>
-			<version>${neogrid.simulator.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.liquibase</groupId>

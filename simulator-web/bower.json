@@ -13,6 +13,9 @@
     "tests"
   ],
   "dependencies": {
-    "materialize": "^0.97.7"
-  }
+    "materialize": "^0.97.7",
+    "jquery": "^3.1.1",
+    "material-design-icons": "^3.0.1"
+  },
+  "directory": "src/main/resources/static"
 }
