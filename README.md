@@ -20,24 +20,24 @@ Caso não possua o bower, as dependencias podem ser baixadas manualmente conform
 
 ##### jQuery
 Baixe o conteudo do repositório abaixo:
-> https://github.com/jquery/jquery-dist#3.1.1
+> https://github.com/jquery/jquery-dist
 
 E descompacte na pasta:
 > simulator-web/src/main/resources/static/jquery
 
-##### Material Icons
-Baixe o conteudo do repositório abaixo:
-> https://github.com/google/material-design-icons.git#3.0.1
-
-E descompacte na pasta:
-> simulator-web/src/main/resources/static/material-design-icons
-
 ##### Materialize
 Baixe o conteudo do repositório abaixo:
-> https://github.com/Dogfalo/materialize.git#0.97.7
+> https://github.com/Dogfalo/materialize.git
 
 E descompacte na pasta:
 > simulator-web/src/main/resources/static/materialize
+
+##### Ace Editor
+Baixe o conteudo do repositório abaixo:
+> https://github.com/ajaxorg/ace-builds.git
+
+E descompacte na pasta:
+> simulator-web/src/main/resources/static/ace-builds
 
 ## Compilando
 Na pasta raiz do projeto simulator, execute o seguinte comando:

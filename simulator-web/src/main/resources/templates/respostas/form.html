@@ -68,14 +68,34 @@
 
 	</div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
+	<script type="text/javascript" th:src="@{/ace-builds/src-min-noconflict/ace.js}"></script>
+	<script type="text/javascript" th:src="@{/ace-builds/src-min-noconflict/ext-language_tools.js}"></script>
 
 	<script th:inline="javascript">
+		var editor = null;
 		$(document).ready(function(){
-			var editor = ace.edit("editor");
+			ace.require("ace/ext/language_tools");
+			editor = ace.edit("editor");
 			editor.setTheme("ace/theme/monokai");
-			editor.setValue([[${resposta.getTextMessage()}]]);
 			editor.getSession().setMode("ace/mode/xml");
+			editor.setOptions({
+		        enableBasicAutocompletion: true,
+		        enableSnippets: true,
+		        enableLiveAutocompletion: false
+		    });
+
+			editor.setValue([[${resposta.getTextMessage()}]]);
+
+			editor.commands.addCommand({
+		        name: "showKeyboardShortcuts",
+		        bindKey: {win: "Ctrl-Alt-h", mac: "Command-Alt-h"},
+		        exec: function(editor) {
+		            ace.config.loadModule("ace/ext/keybinding_menu", function(module) {
+		                module.init(editor);
+		                editor.showKeyboardShortcuts();
+		            })
+		        }
+		    });
 			
 			$("button").click(function(){
 				$('#mensagem').val(editor.getValue());
