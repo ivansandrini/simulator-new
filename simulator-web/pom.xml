@@ -84,10 +84,10 @@
 				<version>3.5.2</version>
 				<configuration>
 					<changeLogFile>src/main/resources/db/changelogdb.changelog-1.0.xml</changeLogFile>
-					<driver>com.mysql.jdbc.Driver</driver>
-					<url>jdbc:mysql://localhost:3306/simulador</url>
-					<username>root</username>
-					<password>admin</password>
+					<driver>${env.SIMULATOR_DB_DRIVER}</driver>
+					<url>${env.SIMULATOR_DB_URL}</url>
+					<username>${env.SIMULATOR_DB_USERNAME}</username>
+					<password>${env.SIMULATOR_DB_PASSWORD}</password>
 				</configuration>
 			</plugin>
 		</plugins>
