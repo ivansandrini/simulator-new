@@ -49,11 +49,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
-		</dependency>
-		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
@@ -109,6 +104,25 @@
 						${project.basedir}/src/main/resources/jetty/jetty-ssl.xml,
 						${project.basedir}/src/main/resources/jetty/jetty-https.xml
 					</jettyXml>
+                    <systemProperties>
+                        <force>true</force>
+                        <systemProperty>
+                            <name>SIMULATOR_DB_DRIVER</name>
+                            <value>${env.SIMULATOR_DB_DRIVER}</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>SIMULATOR_DB_URL</name>
+                            <value>${env.SIMULATOR_DB_URL}</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>SIMULATOR_DB_USERNAME</name>
+                            <value>${env.SIMULATOR_DB_USERNAME}</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>SIMULATOR_DB_PASSWORD</name>
+                            <value>${env.SIMULATOR_DB_PASSWORD}</value>
+                        </systemProperty>
+                    </systemProperties>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -142,8 +156,6 @@
 						</executions>
 						<configuration>
 							<wsdlUrls>
-								<!-- wsdlUrl></wsdlUrl -->
-								<!-- <wsdlDirectory>src/wsdl</wsdlDirectory> -->
 								<wsdlFile>src/main/resources/wsdl/${padrao}.wsdl</wsdlFile>
 							</wsdlUrls>
 							<keep>true</keep>

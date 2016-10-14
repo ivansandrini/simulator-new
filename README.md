@@ -46,21 +46,28 @@ mvn clean install
 ```
 
 ## Executando
+Após os passos acima, antes de iniciar o simulador, será necessario criar as propriedades de conexão com o banco de dados.
+
+Crie as variaveis de ambiente conforme abaixo:
+
+Variavel | Valor
+--- | ---
+SIMULATOR_DB_DRIVER | com.mysql.jdbc.Driver
+SIMULATOR_DB_URL | jdbc:mysql://localhost:3306/simulator
+SIMULATOR_DB_USERNAME | nfse
+SIMULATOR_DB_PASSWORD | nfse
+> Obs: Substitua as informações pelas informações do seu banco de dados.
+É interessante que o banco de dados utilizado seja MySQL, pois já está homologado.
+
 Após os passos acima, para executar o simulador, existem dois processos.
 
 ##### Monitor
-Verifique a configuração de banco, para apontar para o servidor de banco local.
-> simulator-web/src/main/resources/application.properties
-
 Utilize o comando abaixo, para executar o monitor.
 ```bash
 java -jar simulator-web/target/simulator-web-0.0.1-SNAPSHOT.jar
 ```
 
 ##### Webservices
-Verifique a configuração de banco, para apontar para o servidor de banco local.
-> simulator-ws/src/main/resources/META-INF/persistence.xml
-
 Utilize o comando abaixo, para executar o web service.
 ```bash
 mvn jetty:run
