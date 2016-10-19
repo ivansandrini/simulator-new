@@ -2,3 +2,4 @@ ID,NOME
 1,ConsultarLoteRps
 2,RecepcionarLoteRps
 3,ConsultarSituacaoLote
+4,ConsultarNfsePorRps
