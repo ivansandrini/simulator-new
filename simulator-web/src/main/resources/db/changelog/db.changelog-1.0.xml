@@ -20,6 +20,7 @@
 			<column name="parameter_type" type="INT" />
 			<column name="valor" type="VARCHAR(255)" />
 			<column name="resposta_id" type="INT" />
+			<column name="ip" type="VARCHAR(60)" />
 		</createTable>
 	</changeSet>
 	<changeSet author="isandrini (generated)" id="1475155932258-3">

@@ -35,19 +35,13 @@ public class ParametrosRespostaController {
 	@Autowired 
 	private RespostaRepository respostaRepository;
 	
-	@RequestMapping("/form")
-	public ModelAndView form(final ParametroResposta parametroResposta, HttpServletRequest request, Pageable pageable) {
+	@RequestMapping("/form/{respostaId}")
+	public ModelAndView form(@PathVariable("respostaId") Long respostaId, final ParametroResposta parametroResposta, HttpServletRequest request, Pageable pageable) {
 		ModelAndView modelAndView = new ModelAndView("parametros/form");
-		String remoteAddr = request.getRemoteAddr();
 		
-		Page<Resposta> respostas;
-		if(remoteAddr != null && !"0:0:0:0:0:0:0:1".equals(remoteAddr)){
-			respostas = respostaRepository.findAllByIp(remoteAddr, pageable);
-		} else {
-			respostas = respostaRepository.findAllByIpIsNull(pageable);
-		}
+		Resposta resposta = respostaRepository.findOne(respostaId);
+		parametroResposta.setResposta(resposta);
 		
-		modelAndView.addObject("respostas", respostas);
 		modelAndView.addObject("tipos", ParameterType.values());
 		
 		return modelAndView;
@@ -66,16 +60,17 @@ public class ParametrosRespostaController {
 		parametroRespostaRepository.save(parametroResposta);
 		attributes.addFlashAttribute(SUCCESS, "Parâmetro salvo com sucesso!");
 		
-		return new ModelAndView("redirect:/parametros");
+		ModelAndView modelAndView = new ModelAndView("redirect:/respostas/update/" + parametroResposta.getResposta().getId());
+		return modelAndView;
 	}
 	
 	@RequestMapping("/update/{id}")
 	public ModelAndView update(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/parametros/form");
 		ParametroResposta parametroResposta = parametroRespostaRepository.findOne(id);
 		
 		redirectAttributes.addFlashAttribute("parametroResposta", parametroResposta);
 		
+		ModelAndView modelAndView = new ModelAndView("redirect:/parametros/form/" + parametroResposta.getResposta().getId());
 		return modelAndView;
 	}
 	
@@ -86,7 +81,8 @@ public class ParametrosRespostaController {
 		parametroRespostaRepository.delete(parametroResposta);
 		attributes.addFlashAttribute(SUCCESS, "Parâmetro removido com sucesso!");
 		
-		return new ModelAndView("redirect:/parametros");
+		ModelAndView modelAndView = new ModelAndView("redirect:/respostas/update/" + parametroResposta.getResposta().getId());
+		return modelAndView;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
