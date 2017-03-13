@@ -74,7 +74,7 @@
 			referencedColumnNames="id" referencedTableName="resposta" />
 	</changeSet>
 
-	<changeSet author="isandrini" id="1.0">
+	<changeSet author="isandrini" id="respostas-ginfes">
 		<loadData encoding="UTF-8" file="db/changelog/csv/types.csv" tableName="tipo" />
 		<loadData encoding="UTF-8" file="db/changelog/csv/layouts.csv" tableName="layout" />
 		<loadData encoding="UTF-8" file="db/changelog/csv/responses.csv" tableName="resposta" />
