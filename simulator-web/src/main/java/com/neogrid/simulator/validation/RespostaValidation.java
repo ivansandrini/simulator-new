@@ -1,10 +1,12 @@
 package com.neogrid.simulator.validation;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-public class ProdutoValidation implements Validator {
+@Component
+public class RespostaValidation implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -13,13 +15,8 @@ public class ProdutoValidation implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmpty(errors, "titulo", "field.required");
-		ValidationUtils.rejectIfEmpty(errors, "descricao", "field.required");
-		
-		Object produto = (Object) target;
-		if(produto.toString() != null){
-			errors.rejectValue("paginas", "field.required");
-		}
+		ValidationUtils.rejectIfEmpty(errors, "nome", "field.required");
+		ValidationUtils.rejectIfEmpty(errors, "mensagem", "field.required");
 	}
 
 }

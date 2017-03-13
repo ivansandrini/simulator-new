@@ -1,6 +1,7 @@
 package com.neogrid.simulator.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ import com.neogrid.simulator.dao.RespostaRepository;
 import com.neogrid.simulator.dao.TipoRepository;
 import com.neogrid.simulator.form.SearchForm;
 import com.neogrid.simulator.model.Resposta;
+import com.neogrid.simulator.validation.RespostaValidation;
 
 @Controller
 @RequestMapping("/respostas")
@@ -42,10 +44,13 @@ public class RespostasController {
 	
 	@Autowired
 	private TipoRepository tipoRepostory;
+	
+	@Autowired
+	private RespostaValidation respostaValidation;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		//binder.addValidators(new ProdutoValidation());
+		binder.addValidators(respostaValidation);
 	}
 
 	@RequestMapping("/form")
@@ -59,7 +64,29 @@ public class RespostasController {
 	}
 
 	@RequestMapping(path="gravar", method = RequestMethod.POST)
-	public ModelAndView gravar(Resposta resposta, BindingResult result,
+	public ModelAndView gravar(@ModelAttribute("resposta") @Valid Resposta resposta, BindingResult result,
+			RedirectAttributes attributes, HttpServletRequest request) {
+		
+		if(result.hasErrors()) {
+			return form(resposta);
+		}
+		
+		String remoteAddr = request.getRemoteAddr();
+		logger.info("Salvando resposta com o IP do cliente remoteaddr = " + request.getRemoteAddr());
+		
+		
+		if(remoteAddr != null && !"0:0:0:0:0:0:0:1".equals(remoteAddr)){
+			resposta.setIp(remoteAddr);
+		}
+		
+		respostaRepository.save(resposta);
+		attributes.addFlashAttribute(SUCCESS, "Resposta salva com sucesso!");
+		
+		return new ModelAndView("redirect:/respostas");
+	}
+	
+	@RequestMapping(path="gravarParametro", method = RequestMethod.POST)
+	public ModelAndView gravarParametro(Resposta resposta, BindingResult result,
 			RedirectAttributes attributes, HttpServletRequest request) {
 		
 		String remoteAddr = request.getRemoteAddr();

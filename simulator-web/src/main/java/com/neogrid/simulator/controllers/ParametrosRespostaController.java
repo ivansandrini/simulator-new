@@ -27,7 +27,7 @@ import com.neogrid.simulator.model.Resposta;
 @RequestMapping("/parametros")
 public class ParametrosRespostaController {
 
-	private static final String SUCCESS = "sucesso";
+	private static final String SUCCESS = "parametro_sucesso";
 
 	@Autowired
 	private ParametroRespostaRepository parametroRespostaRepository;

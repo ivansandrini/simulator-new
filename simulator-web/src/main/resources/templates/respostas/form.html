@@ -20,12 +20,17 @@
 				<form th:action="@{/respostas/gravar}" th:object="${resposta}" method="post">
 
 					<input type="hidden" id="id" th:field="*{id}" />
+					
+					<div class="row">
+						<ul>
+						  <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+						</ul>
+					</div>
 
 					<div class="row">
 						<div class="input-field col s6">
 							<label class="active">Nome</label>
 							<input type="text" th:field="*{nome}" />
-							<th:erros path="nome" />
 						</div>
 					</div>
 
