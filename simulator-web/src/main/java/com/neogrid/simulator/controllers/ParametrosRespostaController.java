@@ -35,7 +35,7 @@ public class ParametrosRespostaController {
 	@Autowired 
 	private RespostaRepository respostaRepository;
 	
-	@RequestMapping("/form/{respostaId}")
+	@RequestMapping("/form2/{respostaId}")
 	public ModelAndView form(@PathVariable("respostaId") Long respostaId, final ParametroResposta parametroResposta, HttpServletRequest request, Pageable pageable) {
 		ModelAndView modelAndView = new ModelAndView("parametros/form");
 		
