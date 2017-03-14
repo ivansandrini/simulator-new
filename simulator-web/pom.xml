@@ -165,9 +165,17 @@
 						<groupId>com.spotify</groupId>
 						<artifactId>docker-maven-plugin</artifactId>
 						<version>0.4.11</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>build</goal>
+								</goals>
+								<phase>package</phase>
+							</execution>
+						</executions>
 						<configuration>
 							<imageName>neogrid/${project.artifactId}</imageName>
-							<dockerDirectory>src/main/docker</dockerDirectory>
+							<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
 							<resources>
 								<resource>
 									<targetPath>/</targetPath>
