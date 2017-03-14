@@ -3,7 +3,7 @@ services:
   db:
     image: mysql
     ports:
-      - "3306:3306"
+      - "3305:3306"
     environment:
       MYSQL_DATABASE: simulator
       MYSQL_ROOT_PASSWORD: admin
@@ -15,7 +15,7 @@ services:
       - "8082:8080"
     environment:
       SIMULATOR_DB_DRIVER: com.mysql.jdbc.Driver
-      SIMULATOR_DB_URL: jdbc:mysql://db:3306/simulator
+      SIMULATOR_DB_URL: jdbc:mysql://db:3305/simulator
       SIMULATOR_DB_USERNAME: root
       SIMULATOR_DB_PASSWORD: admin
   simulator-ws:
@@ -26,6 +26,6 @@ services:
       - "8181:8080"
     environment:
       SIMULATOR_DB_DRIVER: com.mysql.jdbc.Driver
-      SIMULATOR_DB_URL: jdbc:mysql://db:3306/simulator
+      SIMULATOR_DB_URL: jdbc:mysql://db:3305/simulator
       SIMULATOR_DB_USERNAME: root
       SIMULATOR_DB_PASSWORD: admin
