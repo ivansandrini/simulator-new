@@ -38,14 +38,7 @@
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="input-field col s6">
-							<label class="active">Resposta</label>
-							<select th:field="*{resposta.id}" class="browser-default">
-								<option th:each="resposta : ${respostas}" th:value="${resposta.id}" th:text="${resposta.nome}"></option>
-							</select>
-						</div>
-					</div>
+					<input type="hidden" id="resposta" th:field="*{resposta}" />
 
 					<button type="submit" th:style="*{ip == null and id != null}? 'display:none'" class="waves-effect waves-light btn #d32f2f red darken-2">Cadastrar</button>
 					<a href="#" class="waves-effect waves-light btn #d32f2f red darken-2" onclick="window.history.go(-1)">Cancelar</a>

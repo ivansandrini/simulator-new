@@ -1,0 +1,31 @@
+<div th:fragment="list_parameters" class="row">
+	<div class="col s12">
+		<div class="col s6">
+			<h4>Lista de Par&acirc;metros</h4>
+		</div>
+		<div class="col s6">
+			<a th:href="${(#mvc.url('PRC#form')).arg(0, respostaId).build()}" class="btn-floating btn-large waves-effect waves-light #d32f2f red darken-2 right"><i class="material-icons">add</i></a>
+		</div>
+		
+		<table class="highlight bordered">
+			<thead>
+				<tr>
+					<th>Chave</th>
+					<th>Valor</th>
+					<th>Resposta</th>
+					<th>Tipo</th>
+				</tr>
+			</thead>
+
+			<tr th:each="parametro : ${parametros}">
+				<td th:text="${parametro.chave}"></td>
+				<td th:text="${parametro.valor}"></td>
+				<td th:text="${parametro.resposta.nome}"></td>
+				<td th:text="${parametro.parameterType}"></td>
+				<td><a th:href="${(#mvc.url('PRC#update')).arg(0, parametro.id).build()}"><i class="tiny material-icons">mode_edit</i></a></td>
+				<td th:style="${parametro.ip == null}? 'display:none'"><a th:href="${(#mvc.url('PRC#remove')).arg(0, parametro.id).build()}"><i class="tiny material-icons">delete</i></a></td>
+			</tr>
+		</table>
+		
+	</div>
+</div>

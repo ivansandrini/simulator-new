@@ -20,6 +20,7 @@
 			<column name="parameter_type" type="INT" />
 			<column name="valor" type="VARCHAR(255)" />
 			<column name="resposta_id" type="INT" />
+			<column name="ip" type="VARCHAR(60)" />
 		</createTable>
 	</changeSet>
 	<changeSet author="isandrini (generated)" id="1475155932258-3">
@@ -72,11 +73,56 @@
 			constraintName="FKgvjywrrbi5aidvcmv3plu5q6y" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
 			referencedColumnNames="id" referencedTableName="resposta" />
 	</changeSet>
+	
+	<changeSet author="isandrini" id="tipos-iniciais">
+	    <insert tableName="tipo">
+	        <column name="id" type="INT" value="1"/>
+	        <column name="nome" type="varchar(255)" value="ConsultarLoteRps"/>
+	    </insert>
+	    <insert tableName="tipo">
+	        <column name="id" type="INT" value="2"/>
+	        <column name="nome" type="varchar(255)" value="RecepcionarLoteRps"/>
+	    </insert>
+	    <insert tableName="tipo">
+	        <column name="id" type="INT" value="3"/>
+	        <column name="nome" type="varchar(255)" value="ConsultarSituacaoLote"/>
+	    </insert>
+	    <insert tableName="tipo">
+	        <column name="id" type="INT" value="4"/>
+	        <column name="nome" type="varchar(255)" value="ConsultarNfsePorRps"/>
+	    </insert>
+	</changeSet>
+	
+	<changeSet author="isandrini" id="layouts-iniciais">
+	    <insert tableName="layout">
+	        <column name="id" type="INT" value="1"/>
+	        <column name="nome" type="varchar(255)" value="Ginfes"/>
+	    </insert>
+	    <insert tableName="layout">
+	        <column name="id" type="INT" value="2"/>
+	        <column name="nome" type="varchar(255)" value="Prodam"/>
+	    </insert>
+	    <insert tableName="layout">
+	        <column name="id" type="INT" value="3"/>
+	        <column name="nome" type="varchar(255)" value="Sil Tecnologia"/>
+	    </insert>
+	    <insert tableName="layout">
+	        <column name="id" type="INT" value="4"/>
+	        <column name="nome" type="varchar(255)" value="Saatri"/>
+	    </insert>
+	</changeSet>
 
-	<changeSet author="isandrini" id="1.0">
-		<loadData encoding="UTF-8" file="db/changelog/csv/types.csv" tableName="tipo" />
-		<loadData encoding="UTF-8" file="db/changelog/csv/layouts.csv" tableName="layout" />
-		<loadData encoding="UTF-8" file="db/changelog/csv/responses.csv" tableName="resposta" />
+	<changeSet author="isandrini" id="ginfes-respostas">
+		<loadData encoding="UTF-8" file="db/changelog/csv/ginfes.csv" tableName="resposta" />
+	</changeSet>
+	<changeSet author="isandrini" id="prodam-respostas">
+		<loadData encoding="UTF-8" file="db/changelog/csv/prodam.csv" tableName="resposta" />
+	</changeSet>
+	<changeSet author="isandrini" id="siltectnologia-respostas">
+		<loadData encoding="UTF-8" file="db/changelog/csv/siltecnologia.csv" tableName="resposta" />
+	</changeSet>
+	<changeSet author="isandrini" id="saatri-respostas">
+		<loadData encoding="UTF-8" file="db/changelog/csv/saatri.csv" tableName="resposta" />
 	</changeSet>
 	
 </databaseChangeLog>

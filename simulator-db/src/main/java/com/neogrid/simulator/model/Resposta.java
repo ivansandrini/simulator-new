@@ -37,7 +37,7 @@ public class Resposta {
 	
 	private String ip;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="resposta")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="resposta")
 	@Cascade(value= {CascadeType.SAVE_UPDATE, CascadeType.DELETE })
 	public List<ParametroResposta> parametros;
 	

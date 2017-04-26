@@ -1,13 +1,7 @@
 <div th:fragment="nav">
 	<ul id="defaultDropdown" class="dropdown-content">
-		<li><a th:href="@{/respostas/default}">Respostas</a></li>
-		<li><a th:href="@{/parametros/default}">Par&acirc;metros</a></li>
-	</ul>
-
-	<ul id="myDropdown" class="dropdown-content">
-		<li><a th:href="@{/respostas}">Respostas</a></li>
-		<li><a th:href="@{/parametros}">Par&acirc;metros</a></li>
-		<li class="divider"></li>
+		<li><a th:href="@{/respostas}">Minhas</a></li>
+		<li><a th:href="@{/respostas/default}">Padr&atilde;o </a></li>
 	</ul>
 
 	<nav>
@@ -16,10 +10,7 @@
 
 			<ul class="right hide-on-med-and-down">
 				<li><a class="dropdown-button" href="#!"
-					data-activates="defaultDropdown">Padr&atilde;o <i
-						class="material-icons right">arrow_drop_down</i></a></li>
-				<li><a class="dropdown-button" href="#!"
-					data-activates="myDropdown">Meus <i
+					data-activates="defaultDropdown">Respostas <i
 						class="material-icons right">arrow_drop_down</i></a></li>
 			</ul>
 		</div>
